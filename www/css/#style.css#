@@ -1,0 +1,50 @@
+/* Empty. Add your own CSS if you like */
+#location{
+  height:150px;
+  background: url("http://elmonomudo.com/wp-content/gallery/shangaiedu/shanghai_sky_line_august_2010.jpg");
+  background-size:cover;
+}
+
+
+p.days {
+  font-size: 18px;
+}
+
+a#comingDays {
+  height: 93px;
+  margin-top: -25px;
+}
+
+img#cityImg {
+  height: 200px;
+}
+
+textarea {
+ height: 425px;
+ font-size: 20px;
+ line-height: 1.5em; 
+}
+
+h2#temp {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+p#temp {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+img#wIcon {
+  max-width: 35px;
+  max-height: 35px;
+  left: 20px;
+  top: 25px;
+}
+
+
+
+mg#factImg {
+  width: 350px;
+  height: 250px;
+}
