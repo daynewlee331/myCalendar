@@ -130,7 +130,8 @@ angular.module('starter.controllers', ['ngCordova'])
     })
     
     //weather forecast
-    $injector.invoke(function($http) {  
+    
+	/*$injector.invoke(function($http) {  
 	    var url = "http://api.k780.com:88/?app=weather.future&weaid=1&appkey=13965&sign=179b45462a6136b4073aaba7187529dc&format=json&jsoncallback=JSON_CALLBACK&weaid="+city.toLowerCase();
       $http.jsonp(url).success(function(data){
 	      //alert(data);
@@ -153,9 +154,11 @@ angular.module('starter.controllers', ['ngCordova'])
         }
 	  })
           $ionicLoading.hide();
-	  })
-	  })
+	  })*/
+	$ionicLoading.hide();
+	})
       })
+    
 
 .controller('SaveCtrl', function($scope, zipCode) {
   $scope.save = function(){
@@ -167,7 +170,7 @@ angular.module('starter.controllers', ['ngCordova'])
       setTimeout(function(){ document.getElementById("alert").innerHTML =""; }, 1000);
     }  
   }
-})
+  })
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
@@ -175,10 +178,4 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 })
 
-.controller('noteCtrl', function($scope, zipCode) {
-	if(window.localStorage['notes'] != null && window.localStorage['notes'] != ""){
-	    //document.getElementById("notes").innerHTML = window.localStorage['notes'];
-            //$scope.notes = window.localStorage['notes'];
-            $scope.model = window.localStorage['notes'];
-	}
-    });
+;

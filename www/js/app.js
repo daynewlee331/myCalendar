@@ -52,6 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+      
   .state('tab.facts', {
     url: "/facts",
     views: {
@@ -59,8 +60,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         templateUrl: "templates/facts.html"
       }
     }
-  })
+    })
 
+      .state('tab.facts2', {
+	      url: "/facts2",
+		  views: {
+		  'tab-dash': {
+		      templateUrl: "templates/facts2.html"
+			  }
+	      }
+	  })
+      
   .state('tab.calendar', {
     url: '/calendar',
     views: {
@@ -69,7 +79,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 	      //controller: 'DashCtrl'
       }
     }
-  })
+    })
   
   .state('tab.chats', {
       url: '/chats',

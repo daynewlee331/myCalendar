@@ -1,56 +1,46 @@
 <ion-view view-title="主页">
   <ion-content class="padding">
-    <div class="list card" ng-controller = "panelCtrl">
-      <div class="item item-divider"><i class="icon ion-ios-location"></i> <a id = "locationName">Current Location</a></div>
-      <div class="item item-image" id = 'locationImg'>
-        <img src="http://pic15.nipic.com/20110727/6647776_103453175129_2.jpg" id='cityImg'>
-      </div>
-      <div class="item item-body" id="date"> Sunday Sept.10th</div> 
-      <div class="item item-avatar" id="weather"> 10°C</div>
-     
-      <li class="item item-checkbox">
-        <label class="checkbox">
-          <input type="checkbox" ng-model="mustShow">
-        </label>
-        显示天气预报
-      </li>
-      
-     <div ng-show="mustShow">
-      <div class="item item-avatar" id="day0"></div>
-      <div class="item item-avatar" id="day1"></div>
-      <div class="item item-avatar" id="day2"></div>
-      <div class="item item-avatar" id="day3"></div>
-      <div class="item item-avatar" id="day4"></div>
-      <div class="item item-avatar" id="day5"></div>
-     </div>
-   </div>
+
+<div class="list list-inset">
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="搜索宝石知识和购买经验">
+  </label>
+</div>
 
    <div class="list card">
-      <div class="item item-divider">今日宝石知识</div>
+      <div class="item item-divider">今日推荐</div>
       <div class="item item-body" id='gemTitle'>Ruby</div>
-
+     
       <div class="item item-image" id='gemPic'>
         <img src="http://img4.aili.com/201310/15/1381831275_93879200.jpg">
       </div>
 
       <a class="item item-icon-left assertive" href="#/tab/facts">
-        <i class="icon ion-ios-book"></i>
+        <i class="icon ion-ios-glasses"></i>
         点击阅读
       </a>
     </div>
+
+    <div class="list card" ng-controller = "panelCtrl">
+      <div class="item item-divider"><i class="icon ion-ios-location"></i> <a id = "locationName">Current Location</a></div>
+      <div class="item item-body" id="date"> Sunday Sept.10th</div>
+      <div class="item item-image" id = 'locationImg'>
+        <img src="http://pic15.nipic.com/20110727/6647776_103453175129_2.jpg" id='cityImg'>
+      </div>
+      <a class="item item-icon-left assertive" href="#/tab/facts2">
+        <i class="icon ion-ios-more"></i>
+        所有展会
+      </a>
+   </div>
+
   </ion-content>
 </ion-view>
 
 <script id="templates/facts.html" type="text/ng-template">
-      <ion-view view-title="今日宝石">
+      <ion-view view-title="今日推荐">
         <ion-content class="padding">
          <div class="list card">
-<!--
-  <div class="item item-avatar">
-    <img src="http://p2.qqgexing.com/touxiang/20120827/2144/503b79c0ded98.jpg">
-    <h2>Marty McFly</h2>
-    <p>November 05, 1955</p>
-  </div> -->
 
   <div class="item item-body" id="gem_article" ng-controller = "articleCtrl">
     <img class="full-image" src="http://img4.aili.com/201310/15/1381831275_93879200.jpg">
@@ -81,6 +71,15 @@
   </div>
 
 </div>
+        </ion-content>
+      </ion-view>
+    </script>
+
+<script id="templates/facts2.html" type="text/ng-template">
+      <ion-view view-title="展会资讯">
+        <ion-content class="padding" ng-controller="exhCtrl">
+          <div class="list card" id = "exh">
+          </div>
         </ion-content>
       </ion-view>
     </script>
