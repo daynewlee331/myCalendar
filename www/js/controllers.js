@@ -193,6 +193,14 @@ angular.module('starter.controllers', ['ngCordova'])
     } 
     $http.get(url).
       success(function(data) {
+	var j = 0;
+        while(j < data.length){
+	    var regex = /(<([^>]+)>)/ig
+                ,   body = data[j]['content']
+                ,   result = body.replace(regex, "");
+	    data[j]['content'] = result;  
+	  j++;
+        }
 	$scope.chats = data;
       }).
       error(function(data, status, headers, config) {
