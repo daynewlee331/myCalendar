@@ -14,9 +14,23 @@ angular.module('starter.controllers', ['ngCordova'])
 				   '6');
 	var d = new Date();
 	var dayName = gsDayNames[d.getDay()];
+	$scope.archive = function() {
+	  if(localStorage.getItem("archive") === null) {
+	      var articleList=[];
+              articleList[0]=dayName;
+	  }else{
+	     var articleList = JSON.parse(localStorage["archive"]);
+             var length = articleList.length;
+             if(articleList.indexOf(dayName + "") >= 0){
+             }else{
+		 articleList[length] = dayName;
+             }
+          }
+          localStorage["archive"] =JSON.stringify(articleList);
+            alert(localStorage["archive"]);
+        };
   var url = "http://54.148.35.232:1337/gem_info?aId="+dayName;
   $http.get(url).success(function(response) {
-	  //alert(response);
     var title = response[0]["title"];
     var content = response[0]["content"];
     var pic_url = response[0]["pic_url"];
@@ -26,6 +40,7 @@ angular.module('starter.controllers', ['ngCordova'])
   })
 })
 
+//load exh data
 .controller('exhCtrl', function($scope, $http) {
   $http.get('lib/data.json').success(function(data){
     var json = data;
@@ -88,7 +103,7 @@ angular.module('starter.controllers', ['ngCordova'])
       })
     })
 
-    //call sailsjs api
+    //call my sailsjs api from aws
     $injector.invoke(function($http) {
 	    var gsDayNames = new Array(
 				       '7',
@@ -113,7 +128,7 @@ angular.module('starter.controllers', ['ngCordova'])
           document.getElementById("gemPic").innerHTML="";
           document.getElementById("gemPic").innerHTML="<img src=\""+pic_url+"\">";
         });
-    })
+	})
    
 	//display current date
     $injector.invoke(function($http) {  
@@ -158,24 +173,72 @@ angular.module('starter.controllers', ['ngCordova'])
 	$ionicLoading.hide();
 	})
       })
-    
-
-.controller('SaveCtrl', function($scope, zipCode) {
-  $scope.save = function(){
-    var text = document.getElementById("notes").value;
-    if(text != window.localStorage['notes']){
-      window.localStorage['notes'] = null;
-      window.localStorage['notes'] = text;
-      document.getElementById("alert").innerHTML = "<button class=\"button button-full button-balanced\">保存成功</button>";
-      setTimeout(function(){ document.getElementById("alert").innerHTML =""; }, 1000);
-    }  
-  }
-  })
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
+})
+
+//get archived list
+.controller('ChatsCtrl', function($scope, $http) {
+  if(localStorage["archive"] != null){
+    var articleList = JSON.parse(localStorage["archive"]);                   
+    var length = articleList.length;                                                           
+    var i = 0;                                                            
+    var url = 'http://54.148.35.232:1337/gem_info?';                                               
+    while(i < length){                                                          
+      url = url + '&aId='+articleList[i];
+      i ++;
+    } 
+    $http.get(url).
+      success(function(data) {
+	$scope.chats = data;
+      }).
+      error(function(data, status, headers, config) {
+ 
+      });                                                                                                            
+  }else{
+
+  }
+  $scope.remove = function(chat) {
+    Chats.remove(chat);
+  }
+})
+
+//archive detail   
+.controller('ChatDetailCtrl', function($scope, $stateParams, $http) {
+  if(localStorage["archive"] != null){
+    var articleList = JSON.parse(localStorage["archive"]);
+    var length = articleList.length;
+    var i = 0;
+    var url = 'http://54.148.35.232:1337/gem_info?';
+    while(i < length){
+      url = url + '&aId='+articleList[i];
+      i ++;
+    }
+    $http.get(url).
+    success(function(data) {
+      var i = 0;
+      while(i < data.length){
+        if(data[i]['aId'] == $stateParams.chatId){
+	    var regex = /(<([^>]+)>)/ig
+		,   body = data[i]['content']
+		,   result = body.replace(regex, "");
+	  data[i]['content'] = result;
+	  $scope.chat = data[i];
+          return;
+        }
+        i ++;
+      }
+    }).
+    error(function(data, status, headers, config) {
+
+    });
+  }else{
+
+  }
+    
 })
 
 ;

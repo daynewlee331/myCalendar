@@ -62,14 +62,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
     })
 
-      .state('tab.facts2', {
-	      url: "/facts2",
-		  views: {
-		  'tab-dash': {
-		      templateUrl: "templates/facts2.html"
-			  }
-	      }
-	  })
+.state('tab.facts2', {
+  url: "/facts2",
+  views: {
+    'tab-dash': {
+      templateUrl: "templates/facts2.html"
+    }
+  }
+})
       
   .state('tab.calendar', {
     url: '/calendar',
@@ -81,16 +81,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
     })
   
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-	  controller: 'SaveCtrl'
-        }
-      }
-    })
-
+ .state('tab.chats', {
+   url: '/chats',
+   views: {
+     'tab-chats': {
+       templateUrl: 'templates/tab-chats.html',
+       controller: 'ChatsCtrl'
+     }
+   }
+ })
   .state('tab.account', {
     url: '/account',
     views: {
@@ -99,8 +98,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
 
+ .state('tab.chat-detail', {
+   url: '/chats/:chatId',
+   views: {
+     'tab-chats': {
+       templateUrl: 'templates/chat-detail.html',
+	 controller: 'ChatDetailCtrl'
+     }
+   }
+ })
+;
+  
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
