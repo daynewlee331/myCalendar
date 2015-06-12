@@ -40,9 +40,9 @@
 <script id="templates/facts.html" type="text/ng-template">
       <ion-view view-title="今日推荐">
         <ion-content class="padding">
-         <div class="list card">
+         <div class="list card" ng-controller = "articleCtrl">
 
-  <div class="item item-body" id="gem_article" ng-controller = "articleCtrl">
+  <div class="item item-body" id="gem_article">
     <img class="full-image" src="http://img4.aili.com/201310/15/1381831275_93879200.jpg">
     <p>
       This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
@@ -60,11 +60,11 @@
       <i class="icon ion-thumbsup"></i>
       赞
     </a>
-    <a class="tab-item" href="#">
+    <!--<a class="tab-item" href="#">
       <i class="icon ion-share"></i>
       分享
-    </a>
-    <a class="tab-item" href="#">
+    </a>-->
+    <a class="tab-item" ng-click="archive()">
       <i class="icon ion-star"></i>
       收藏
     </a>

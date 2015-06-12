@@ -1,11 +1,16 @@
 <ion-view view-title="收藏">
   <ion-content>
-   <!--
-    <div id = "alert"></div>
-    <div class="list list-inset">
-      <label class="item item-input">
-        <textarea ng-model="model" ng-blur="save()" id="notes" ng-controller = "noteCtrl"></textarea>
-      </label>
-    </div> -->
+    <ion-list>
+      <ion-item class="item-remove-animate item-thumbnail-left item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.aId}}">
+        <img ng-src="{{chat.pic_url}}">
+        <h2>{{chat.title}}</h2>
+        <p>{{chat.content}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
