@@ -1,0 +1,25 @@
+<ion-view view-title="{{article.title}}">
+  <ion-content class="padding">
+    
+    <div class="list card" ng-controller="findArticleCtrl">
+
+      <div class="item item-body">
+        <img class="full-image" src="{{article.pic_url}}">
+        <p>
+          {{article.content}}
+     <div class="item tabs tabs-secondary tabs-icon-left"> 
+       <!--
+        <a class="tab-item">
+          <i class="icon ion-thumbsup"></i>
+          赞
+        </a> -->
+        <a class="tab-item" ng-click="archive()">
+          <i class="icon ion-star"></i>
+          收藏
+        </a>
+     </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+
